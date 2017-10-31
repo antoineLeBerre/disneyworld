@@ -1,0 +1,3 @@
+disneylanddisney_homepage:
+    path:     /
+    defaults: { _controller: DisneylanddisneyBundle:Default:index }
