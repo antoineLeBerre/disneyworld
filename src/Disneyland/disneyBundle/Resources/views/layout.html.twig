@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </head>
@@ -21,8 +22,11 @@
             </li>
         </ul>
     </div>
-</nav>
-{% block body %}
-{% endblock %}
+</nav>`
+<div class="bodyFixe">
+    {% block body %}
+    {% endblock %}
+</div>
+
 </body>
 </html>
