@@ -8,6 +8,6 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('DisneylanddisneyBundle:Home:index.html.twig');
+        return $this->render('DisneylanddisneyBundle:Home:indexAdrien.html.twig');
     }
 }
