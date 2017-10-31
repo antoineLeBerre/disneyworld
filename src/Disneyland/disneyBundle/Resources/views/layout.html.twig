@@ -1,0 +1,28 @@
+{# app/Resources/views/layout.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: {% block color %}{% endblock %}">
+    <a class="navbar-brand" href="{{ path('home') }}">Game of Videos</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item {% block home %}{% endblock %}">
+                <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+            </li>
+            <li class="nav-item {% block add %}{% endblock %}">
+                <a class="nav-link" href="{{ path('video_add') }}">Ajouter une video</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>
