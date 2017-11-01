@@ -2,17 +2,37 @@
 
 {% block body %}
     <script>
-        $('dpcument').ready(function () {
+        $('document').ready(function () {
+            var imgLoad = 0;
+            $(window).scroll(function(){
+                var where = jQuery(window).scrollTop();
+                var win = jQuery(window).height();
+                var park=jQuery("#parc").offset().top;
+                var offre=jQuery("#offre").offset().top;
+                var transport=jQuery("#transport").offset().top;
 
-            var scroll = jQuery( "body" ).scrollTop();
-            var win_height = jQuery( window ).height();
-            var win= win_height+scroll;
-            var elem=jQuery("#parc").offset().top;
-            var elem2=jQuery("#offre").offset().top;
-            var elem3=jQuery("#transport").offset().top;
-
-            console.log(scroll+'   '+win_height+'   '+win);
-            console.log(elem+'   '+elem2+'   '+elem3);
+                if (where >= park-win && where < offre-win){
+                    if (imgLoad !== 1) {
+                        $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg")');                        imgLoad = 1;
+                    } else {
+                        console.log('image 1 deja chargé');
+                    }
+                } else if (where >= offre-win && where < transport-win){
+                    if (imgLoad !== 2) {
+                        $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n017294_2018dec31_guest-twilight-zone-tower-of-terror_16-9.jpg")');
+                        console.log('image 2 chargé');
+                        imgLoad = 2;
+                    } else {
+                        console.log('image 2 deja chargé');
+                    }
+                } else if (where >= transport-win) {
+                    if (imgLoad !== 3) {
+                        $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg")');                        imgLoad = 3;
+                    } else {
+                        console.log('image 3 deja chargé');
+                    }
+                }
+            });
         })
     </script>
 <div class="bodyFixe">
