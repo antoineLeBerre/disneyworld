@@ -1,3 +1,125 @@
 .bodyFixe {
-    background: url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n009365_2017jun01_disney-studio1_16-9.jpg") no-repeat fixed;
+    color: white;
+    background: url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg") no-repeat fixed;
+    background-size: 100%;
+}
+.contenu {
+    margin-top: 200px;
+    background-color: rgba(7,2,33,0.4);
+    height: 100vh;
+
+}
+
+.mainContent {
+
+}
+
+.carousel {
+    margin-top: -20px;
+}
+
+.carousel-caption {
+    top: 50%;
+}
+
+.carousel_h2 {
+    font-size: 3.5em;
+}
+
+.carousel_p {
+    font-size: 1.5em;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: rgba(7,2,33,0);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: #3F2973;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3F2973;
+}
+
+.tab {
+    display: flex;
+    list-style-type: none;
+}
+
+.tab span {
+    padding: 7px;
+}
+
+.allDivContent{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 70%;
+    height: 95%;
+}
+
+.title {
+    position: absolute;
+    top: 120px;
+}
+
+.title h2 {
+    font-size: 3.5em;
+}
+
+.description {
+    position: absolute;
+    top: 50%;
+    font-size: 1.5em;
+}
+
+.button {
+    position: absolute;
+    bottom: 20px;
+    cursor: pointer;
+    width: 145%;
+}
+
+.readMore {
+    font-size: 1.2em;
 }
