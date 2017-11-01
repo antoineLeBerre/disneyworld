@@ -1,6 +1,8 @@
 .bodyFixe {
     color: white;
-    background: url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg") no-repeat fixed;
+    background-image: url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: 100%;
 }
 .contenu {

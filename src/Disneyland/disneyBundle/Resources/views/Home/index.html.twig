@@ -1,6 +1,40 @@
 {% extends 'DisneylanddisneyBundle::layout.html.twig' %}
 
 {% block body %}
+    <script>
+        $('document').ready(function () {
+            var imgLoad = 0;
+            $(window).scroll(function(){
+                var where = jQuery(window).scrollTop();
+                var win = jQuery(window).height();
+                var park=jQuery("#parc").offset().top;
+                var offre=jQuery("#offre").offset().top;
+                var transport=jQuery("#transport").offset().top;
+
+                if (where >= park-win && where < offre-win){
+                    if (imgLoad !== 1) {
+                        $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg")');                        imgLoad = 1;
+                    } else {
+                        console.log('image 1 deja chargé');
+                    }
+                } else if (where >= offre-win && where < transport-win){
+                    if (imgLoad !== 2) {
+                        $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n017294_2018dec31_guest-twilight-zone-tower-of-terror_16-9.jpg")');
+                        console.log('image 2 chargé');
+                        imgLoad = 2;
+                    } else {
+                        console.log('image 2 deja chargé');
+                    }
+                } else if (where >= transport-win) {
+                    if (imgLoad !== 3) {
+                        $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg")');                        imgLoad = 3;
+                    } else {
+                        console.log('image 3 deja chargé');
+                    }
+                }
+            });
+        })
+    </script>
 <div class="bodyFixe">
     <div class="carousel">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -43,8 +77,8 @@
             </a>
         </div>
     </div>
-    <div class="container">
-        <div class="col-lg-12 contenu">
+    <div class="container" >
+        <div class="col-lg-12 contenu" id="parc">
             <div class="mainContent">
                 <div class="dropdown">
                     <span class="dropbtn">
@@ -72,7 +106,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-12 contenu">
+        <div class="col-lg-12 contenu" id="offre">
             <div class="mainContent">
                 <div class="dropdown">
                     <button class="dropbtn">Dropdown</button>
@@ -97,7 +131,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-12 contenu">
+        <div class="col-lg-12 contenu" id="transport">
             <div class="mainContent">
                 <div class="dropdown">
                     <button class="dropbtn">Dropdown</button>
