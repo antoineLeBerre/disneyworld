@@ -19,4 +19,12 @@ class BddManager
     {
         $this->em = $entityManager;
     }
+
+    public function getAttractions()
+    {
+        $em = $this->em->getRepository('DisneyDisneylandBundle:Attractions');
+        $result = $em->findAll();
+
+        return $result;
+    }
 }
