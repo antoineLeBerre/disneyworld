@@ -1,3 +1,7 @@
+disney_disneyland:
+    resource: "@DisneyDisneylandBundle/Resources/config/routing.yml"
+    prefix:   /
+
 disneylanddisney:
     resource: "@DisneylanddisneyBundle/Resources/config/routing.yml"
     prefix:   /

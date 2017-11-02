@@ -1,6 +1,6 @@
 <?php
 
-namespace Disneyland\disneyBundle\Controller;
+namespace Disney\DisneylandBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

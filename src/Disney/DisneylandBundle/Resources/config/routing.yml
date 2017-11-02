@@ -1,0 +1,15 @@
+disney_disneyland_homepage:
+    path:     /
+    defaults: { _controller: DisneyDisneylandBundle:Home:index }
+
+attraction:
+    path:     /
+    defaults: { _controller: DisneyDisneylandBundle:Home:index }
+
+restaurant:
+    path:     /
+    defaults: { _controller: DisneyDisneylandBundle:Home:index }
+
+shows:
+    path:     /
+    defaults: { _controller: DisneyDisneylandBundle:Home:index }

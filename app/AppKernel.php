@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new Disneyland\disneyBundle\DisneylanddisneyBundle(),
+            new Disney\DisneylandBundle\DisneyDisneylandBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
