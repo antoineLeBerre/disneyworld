@@ -23,8 +23,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
 /**
- * ProfilerController.
- *
  * @author Fabien Potencier <fabien@symfony.com>
  */
 class ProfilerController
@@ -39,8 +37,6 @@ class ProfilerController
     private $baseDir;
 
     /**
-     * Constructor.
-     *
      * @param UrlGeneratorInterface        $generator       The URL Generator
      * @param Profiler                     $profiler        The profiler
      * @param Environment                  $twig            The twig environment
@@ -125,34 +121,6 @@ class ProfilerController
             'templates' => $this->getTemplateManager()->getNames($profile),
             'is_ajax' => $request->isXmlHttpRequest(),
             'profiler_markup_version' => 2, // 1 = original profiler, 2 = Symfony 2.8+ profiler
-        )), 200, array('Content-Type' => 'text/html'));
-    }
-
-    /**
-     * Displays information page.
-     *
-     * @param Request $request The current HTTP Request
-     * @param string  $about   The about message
-     *
-     * @return Response A Response instance
-     *
-     * @throws NotFoundHttpException
-     */
-    public function infoAction(Request $request, $about)
-    {
-        if (null === $this->profiler) {
-            throw new NotFoundHttpException('The profiler must be enabled.');
-        }
-
-        $this->profiler->disable();
-
-        if (null !== $this->cspHandler) {
-            $this->cspHandler->disableCsp();
-        }
-
-        return new Response($this->twig->render('@WebProfiler/Profiler/info.html.twig', array(
-            'about' => $about,
-            'request' => $request,
         )), 200, array('Content-Type' => 'text/html'));
     }
 

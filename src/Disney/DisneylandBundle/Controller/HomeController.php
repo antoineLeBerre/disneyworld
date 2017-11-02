@@ -3,6 +3,7 @@
 namespace Disney\DisneylandBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 
 class HomeController extends Controller
 {
@@ -11,10 +12,16 @@ class HomeController extends Controller
         function jsonDecode($url) {
             $contentJSON = file_get_contents($url);
 
-            $contentArray = json_decode($url);
+            $contentArray = json_decode($contentJSON);
 
             return $contentArray;
         }
+
+        $cache = new FilesystemCache();
+
+        $cache->set('disney.attraction', jsonDecode('https://trulydisney.com/api/attractions.php'));
+        dump($cache->get('disney.attraction'));
+        die();
 
         $attractions = jsonDecode('https://trulydisney.com/api/attractions.php');
         $waiting =  jsonDecode('https://trulydisney.com/api/waiting.php');

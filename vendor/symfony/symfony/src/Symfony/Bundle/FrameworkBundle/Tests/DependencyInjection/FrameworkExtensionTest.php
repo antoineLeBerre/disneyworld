@@ -134,6 +134,13 @@ abstract class FrameworkExtensionTest extends TestCase
         $this->assertTrue($container->hasDefinition('esi'), '->registerEsiConfiguration() loads esi.xml');
     }
 
+    public function testSsi()
+    {
+        $container = $this->createContainerFromFile('full');
+
+        $this->assertTrue($container->hasDefinition('ssi'), '->registerSsiConfiguration() loads ssi.xml');
+    }
+
     public function testEnabledProfiler()
     {
         $container = $this->createContainerFromFile('profiler');
@@ -1045,6 +1052,7 @@ abstract class FrameworkExtensionTest extends TestCase
                 if (ChainAdapter::class === $parentDefinition->getClass()) {
                     break;
                 }
+                // no break
             case 'cache.adapter.filesystem':
                 $this->assertSame(FilesystemAdapter::class, $parentDefinition->getClass());
                 break;

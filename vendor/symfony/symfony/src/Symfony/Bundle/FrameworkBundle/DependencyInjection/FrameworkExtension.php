@@ -46,6 +46,7 @@ use Symfony\Component\PropertyInfo\PropertyAccessExtractorInterface;
 use Symfony\Component\PropertyInfo\PropertyDescriptionExtractorInterface;
 use Symfony\Component\PropertyInfo\PropertyListExtractorInterface;
 use Symfony\Component\PropertyInfo\PropertyTypeExtractorInterface;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
@@ -242,8 +243,8 @@ class FrameworkExtension extends Extension
         }
 
         $this->addAnnotatedClassesToCompile(array(
-            '**Bundle\\Controller\\',
-            '**Bundle\\Entity\\',
+            '**\\Controller\\',
+            '**\\Entity\\',
 
             // Added explicitly so that we don't rely on the class map being dumped to make it work
             'Symfony\\Bundle\\FrameworkBundle\\Controller\\Controller',
@@ -515,9 +516,9 @@ class FrameworkExtension extends Extension
 
             $transitions = array();
             foreach ($workflow['transitions'] as $transition) {
-                if ($type === 'workflow') {
+                if ('workflow' === $type) {
                     $transitions[] = new Definition(Workflow\Transition::class, array($transition['name'], $transition['from'], $transition['to']));
-                } elseif ($type === 'state_machine') {
+                } elseif ('state_machine' === $type) {
                     foreach ($transition['from'] as $from) {
                         foreach ($transition['to'] as $to) {
                             $transitions[] = new Definition(Workflow\Transition::class, array($transition['name'], $from, $to));
@@ -597,6 +598,10 @@ class FrameworkExtension extends Extension
                     throw new LogicException('Cannot guard workflows as the ExpressionLanguage component is not installed.');
                 }
 
+                if (!class_exists(Security::class)) {
+                    throw new LogicException('Cannot guard workflows as the Security component is not installed.');
+                }
+
                 $eventName = sprintf('workflow.%s.guard.%s', $name, $transitionName);
                 $guard->addTag('kernel.event_listener', array('event' => $eventName, 'method' => 'onTransition'));
                 $configuration[$eventName] = $config['guard'];
@@ -612,6 +617,7 @@ class FrameworkExtension extends Extension
                 ));
 
                 $container->setDefinition(sprintf('%s.listener.guard', $workflowId), $guard);
+                $container->setParameter('workflow.has_guard_listeners', true);
             }
         }
     }
@@ -702,7 +708,7 @@ class FrameworkExtension extends Extension
         // session storage
         $container->setAlias('session.storage', $config['storage_id']);
         $options = array();
-        foreach (array('name', 'cookie_lifetime', 'cookie_path', 'cookie_domain', 'cookie_secure', 'cookie_httponly', 'use_cookies', 'gc_maxlifetime', 'gc_probability', 'gc_divisor') as $key) {
+        foreach (array('name', 'cookie_lifetime', 'cookie_path', 'cookie_domain', 'cookie_secure', 'cookie_httponly', 'use_cookies', 'gc_maxlifetime', 'gc_probability', 'gc_divisor', 'use_strict_mode') as $key) {
             if (isset($config[$key])) {
                 $options[$key] = $config[$key];
             }
@@ -1273,7 +1279,7 @@ class FrameworkExtension extends Extension
     private function registerSerializerConfiguration(array $config, ContainerBuilder $container, XmlFileLoader $loader)
     {
         if (class_exists('Symfony\Component\Serializer\Normalizer\DataUriNormalizer')) {
-            // Run after serializer.normalizer.object
+            // Run before serializer.normalizer.object
             $definition = $container->register('serializer.normalizer.data_uri', DataUriNormalizer::class);
             $definition->setPublic(false);
             $definition->addTag('serializer.normalizer', array('priority' => -920));
@@ -1340,7 +1346,7 @@ class FrameworkExtension extends Extension
                 $fileRecorder('yml', $file);
             }
 
-            if ($container->fileExists($dir = $dirname.'/Resources/config/serialization')) {
+            if ($container->fileExists($dir = $dirname.'/Resources/config/serialization', '/^$/')) {
                 $this->registerMappingFilesFromDir($dir, $fileRecorder);
             }
         }

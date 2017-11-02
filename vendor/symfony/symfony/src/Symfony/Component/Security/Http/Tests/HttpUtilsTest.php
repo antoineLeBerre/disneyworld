@@ -221,6 +221,19 @@ class HttpUtilsTest extends TestCase
         $utils->checkRequestPath($this->getRequest(), 'foobar');
     }
 
+    public function testCheckPathWithoutRouteParam()
+    {
+        $urlMatcher = $this->getMockBuilder('Symfony\Component\Routing\Matcher\UrlMatcherInterface')->getMock();
+        $urlMatcher
+            ->expects($this->any())
+            ->method('match')
+            ->willReturn(array('_controller' => 'PathController'))
+        ;
+
+        $utils = new HttpUtils(null, $urlMatcher);
+        $this->assertFalse($utils->checkRequestPath($this->getRequest(), 'path/index.html'));
+    }
+
     /**
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Matcher must either implement UrlMatcherInterface or RequestMatcherInterface
@@ -237,6 +250,15 @@ class HttpUtilsTest extends TestCase
 
         $utils = new HttpUtils($this->getUrlGenerator('/foo/bar?param=value'));
         $this->assertEquals('/foo/bar', $utils->generateUri(new Request(), 'route_name'));
+    }
+
+    public function testGenerateUriPreservesFragment()
+    {
+        $utils = new HttpUtils($this->getUrlGenerator('/foo/bar?param=value#fragment'));
+        $this->assertEquals('/foo/bar#fragment', $utils->generateUri(new Request(), 'route_name'));
+
+        $utils = new HttpUtils($this->getUrlGenerator('/foo/bar#fragment'));
+        $this->assertEquals('/foo/bar#fragment', $utils->generateUri(new Request(), 'route_name'));
     }
 
     /**

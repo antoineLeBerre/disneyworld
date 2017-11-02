@@ -13,7 +13,6 @@ namespace Symfony\Bridge\ProxyManager\LazyProxy\PhpDumper;
 
 use ProxyManager\Generator\ClassGenerator;
 use ProxyManager\GeneratorStrategy\BaseGeneratorStrategy;
-use ProxyManager\ProxyGenerator\LazyLoadingValueHolderGenerator;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\LazyProxy\PhpDumper\DumperInterface;
@@ -43,8 +42,6 @@ class ProxyDumper implements DumperInterface
     private $classGenerator;
 
     /**
-     * Constructor.
-     *
      * @param string $salt
      */
     public function __construct($salt = '')
