@@ -17,6 +17,7 @@ class HomeController extends Controller
             return $contentArray;
         }
 
+        $cache = $this->get('disney_disneyland.jsontobdd');
         $cache = new FilesystemCache();
 
         $cache->set('disney.attraction', jsonDecode('https://trulydisney.com/api/attractions.php'));
