@@ -26,7 +26,7 @@ class HomeController extends Controller
         //urlParc2 = http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n009365_2017jun01_disney-studio1_16-9.jpg
         //urlParc1 = http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg
 
-        return $this->render('DisneylanddisneyBundle:Home:index.html.twig', [
+        return $this->render('DisneyDisneylandBundle:Home:index.html.twig', [
             'attractions'   => $attractions,
             'waiting'       => $waiting,
             'hotels'        => $hotels,
@@ -37,6 +37,6 @@ class HomeController extends Controller
     }
 
     public function attractionAction(){
-        return $this->render('DisneylanddisneyBundle:Home:index.html.twig');
+        return $this->render('DisneyDisneylandBundle:Home:index.html.twig');
     }
 }
