@@ -1,6 +1,7 @@
 services:
-    disney_disneyland.example:
-        class: Disney\DisneylandBundle\Example
-        arguments: ["@service_id", "plain_value", "%parameter%"]
-    disney_disneykand.jsontobdd:
-        class: Disney\DisneylandBundle\Service\
+#    disney_disneyland.example:
+#        class: Disney\DisneylandBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    disney_disneyland.jsontobdd:
+        class: Disney\DisneylandBundle\Service\JsonToBDD
+        arguments: ["@doctrine.orm.entity_manager"]

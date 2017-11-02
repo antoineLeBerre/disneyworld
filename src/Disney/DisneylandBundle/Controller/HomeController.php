@@ -9,18 +9,13 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-        function jsonDecode($url) {
-            $contentJSON = file_get_contents($url);
-
-            $contentArray = json_decode($contentJSON);
-
-            return $contentArray;
-        }
-
-        $cache = new FilesystemCache();
-
-        $cache->set('disney.attraction', jsonDecode('https://trulydisney.com/api/attractions.php'));
-        dump($cache->get('disney.attraction'));
+        $cache2 = $this->get('disney_disneyland.jsontobdd');
+        $cache2->setWaiting($cache2->jsonDecode('https://trulydisney.com/api/waiting.php'));
+        die();
+//        $cache->setAttraction('disney.attraction', jsonDecode('https://trulydisney.com/api/attractions.php'));
+        $test = $cache2->jsonDecode('https://trulydisney.com/api/waiting.php');
+        $see = key($test->waiting);
+        dump($test);
         die();
 
         $attractions = jsonDecode('https://trulydisney.com/api/attractions.php');
