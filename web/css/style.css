@@ -3,7 +3,7 @@
     background-image: url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100%;
+    background-size: 100% 100%;
 }
 .contenu {
     margin-top: 200px;
@@ -50,6 +50,7 @@
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
+    width: 100%;
     display: none;
     position: absolute;
     background-color: white;
@@ -124,4 +125,116 @@
 
 .readMore {
     font-size: 1.2em;
+}
+
+#readMoreHotel {
+    color: white;
+    font-size: 1.2em;
+}
+
+#readMoreOffre {
+    color: white;
+    font-size: 1.2em;
+}
+
+.imgTransports {
+    width: 200px;
+    height: 100px;
+}
+
+.ecartDivTransports {
+    margin-top: 60px;
+}
+
+.allDivContentTransport {
+    width: 100%;
+    text-align: center;
+}
+
+#divTitleTransport {
+    position: relative;
+    margin-top: 50px;
+}
+
+#titleTransport {
+    font-size: 3.5em;
+    text-align: center;
+    margin: auto;
+}
+
+#descriptionTransport {
+    width: 70%;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+#divVoiture {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+divContentVoiture {
+    display: flex;
+}
+
+#titleVoiture {
+    text-align: left;
+    padding-left: 30px;
+    font-size: 1.5em;
+}
+
+#descriptionVoiture {
+    text-align: left;
+    padding-top: 5px;
+    padding-left: 30px;
+    width: 70%;
+}
+
+#divExpress {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+divContentExpress {
+    display: flex;
+}
+
+#titleExpress {
+    text-align: left;
+    padding-left: 30px;
+    font-size: 1.5em;
+}
+
+#descriptionExpress {
+    text-align: left;
+    padding-top: 5px;
+    padding-left: 30px;
+    width: 70%;
+}
+
+#divRER {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+divContentRER {
+    display: flex;
+}
+
+#titleRER {
+    text-align: left;
+    padding-left: 30px;
+    font-size: 1.5em;
+}
+
+#descriptionRER {
+    text-align: left;
+    padding-top: 5px;
+    padding-left: 30px;
+    width: 70%;
 }

@@ -21,8 +21,6 @@ class HomeController extends Controller
         $cache = new FilesystemCache();
 
         $cache->set('disney.attraction', jsonDecode('https://trulydisney.com/api/attractions.php'));
-        dump($cache->get('disney.attraction'));
-        die();
 
         $attractions = jsonDecode('https://trulydisney.com/api/attractions.php');
         $waiting =  jsonDecode('https://trulydisney.com/api/waiting.php');

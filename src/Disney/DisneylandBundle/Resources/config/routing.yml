@@ -2,14 +2,30 @@ home:
     path:     /
     defaults: { _controller: DisneyDisneylandBundle:Home:index }
 
-attraction:
+attractions:
+    path:     /attractions
+    defaults: { _controller: DisneyDisneylandBundle:Home:index }
+
+hotels:
+    path:     /hotels
+    defaults: { _controller: DisneyDisneylandBundle:Home:index }
+
+restaurants:
     path:     /
     defaults: { _controller: DisneyDisneylandBundle:Home:index }
 
-restaurant:
-    path:     /
+spectacles:
+    path:     /spectacles
+    defaults: { _controller: DisneyDisneylandBundle:Home:index }
+
+offres:
+    path:     /offres
+    defaults: { _controller: DisneyDisneylandBundle:Home:index }
+
+transports:
+    path:     /transports
     defaults: { _controller: DisneyDisneylandBundle:Home:index }
 
 shows:
-    path:     /
+    path:     /shows
     defaults: { _controller: DisneyDisneylandBundle:Home:index }

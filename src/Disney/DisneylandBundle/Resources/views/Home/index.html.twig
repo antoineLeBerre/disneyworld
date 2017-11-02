@@ -5,44 +5,206 @@
         $('document').ready(function () {
             var imgLoad = 1;
             var win = jQuery(window).height();
-            var park=jQuery("#parc").offset().top;
-            var offre=jQuery("#offre").offset().top;
-            var transport=jQuery("#transport").offset().top;
+            var parc = jQuery("#parc").offset().top;
+            var hotel = jQuery("#hotel").offset().top;
+            var offre = jQuery("#offre").offset().top;
+            var transport = jQuery("#transport").offset().top;
             var margin = 500;
 
-            $(window).scroll(function(){
-                var where = jQuery(window).scrollTop();
+            $('document').ready(function () {
+                function regenerateUrl(type, id) {
+                    var url = '/' + type + '?id=' + id;
 
-                if (where >= park-win+margin && where < offre-win){
-                    if (imgLoad !== 1) {
-                        $('.bodyFixe').stop().fadeOut(250, function () {
-                            $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg")').fadeIn(250);
-                        });
-                        imgLoad = 1;
-                    } else {
-                        console.log('image 1 deja chargé');
-                    }
-                } else if (where >= offre-win+margin && where < transport-win){
-                    if (imgLoad !== 2) {
-                        $('.bodyFixe').stop().fadeOut(250, function () {
-                            $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg")').fadeIn(250);
-                        });
-                        imgLoad = 2;
-                    } else {
-                        console.log('image 2 deja chargé');
-                    }
-                } else if (where >= transport-win+margin) {
-                    if (imgLoad !== 3) {
-                        $('.bodyFixe').stop().fadeOut(250, function () {
-                            $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg")').fadeIn(250);
-                        });
-                        imgLoad = 3;
-                    } else {
-                        console.log('image 3 deja chargé');
-                    }
+                    return url;
                 }
+
+                $(window).scroll(function () {
+                    var where = jQuery(window).scrollTop();
+
+                    if (where >= parc - win + margin && where < hotel - win) {
+                        if (imgLoad !== 1) {
+                            $('.bodyFixe').stop().fadeOut(250, function () {
+                                $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg")').fadeIn(250);
+                            });
+                            imgLoad = 1;
+                        } else {
+                            console.log('image 1 deja chargé');
+                        }
+                    } else if (where >= hotel - win + margin && where < offre - win) {
+                        if (imgLoad !== 2) {
+                            $('.bodyFixe').stop().fadeOut(250, function () {
+                                $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n011033_2018juil04_disneyland-hotel-ouside_900-360.jpg")').fadeIn(250);
+                            });
+                            imgLoad = 2;
+                        } else {
+                            console.log('image 2 deja chargé');
+                        }
+                    }  else if (where >= offre - win + margin && where < transport - win) {
+                        if (imgLoad !== 3) {
+                            $('.bodyFixe').stop().fadeOut(250, function () {
+                                $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n017294_2018dec31_guest-twilight-zone-tower-of-terror_16-9.jpg")').fadeIn(250);
+                            });
+                            imgLoad = 3;
+                        } else {
+                            console.log('image 3 deja chargé');
+                        }
+                    } else if (where >= transport - win + margin) {
+                        if (imgLoad !== 4) {
+                            $('.bodyFixe').stop().fadeOut(250, function () {
+                                $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/2757011_2050jan01_main-street-vehicles_16-9.jpg")').fadeIn(250);
+                            });
+                            imgLoad = 4;
+                        } else {
+                            console.log('image 4 deja chargé');
+                        }
+                    }
+                });
+
+                // Début du code js pour les parcs
+
+                $('#parcDisneyland').on('click', function (e) {
+                    e.preventDefault();
+
+                    imgLoad = 1;
+
+                    $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg")');
+
+                    $('#titleParc').html('Parc Disneyland');
+                    $('#descriptionParc').html('Envolez-vous pour un voyage féerique à travers cinq Lands fantastiques, remplis d\'attractions, spectacles et parades. Mesurez-vous aux terribles pirates, voyagez dans le temps et l\'espace et laissez-vous émerveiller par les feux d\'artifice et jeux de lumière inoubliables du Château de la Belle au Bois Dormant.');
+
+                    var urlAttractions = regenerateUrl('attractions', 1);
+                    $('#parcAttractions').attr('href', urlAttractions);
+
+                    var urlRestaurants = regenerateUrl('restaurants', 1);
+                    $('#parcRestaurants').attr('href', urlRestaurants);
+
+
+                    var urlSpectacles = regenerateUrl('spectacles', 1);
+                    $('#parcSpectacles').attr('href', urlSpectacles);
+                });
+
+                $('#parcWDS').on('click', function (e) {
+                    e.preventDefault();
+
+                    imgLoad = 2;
+
+                    $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n009365_2017jun01_disney-studio1_16-9.jpg")');
+
+                    $('#titleParc').html('Parc Walt Disney Studios®');
+                    $('#descriptionParc').html('Découvrez tous les secrets des films d’animation Disney. Des scènes légendaires dessinées au Toon Studio aux effets époustouflants du Backlot, ses cinq zones de production vous promettent un grand moment de divertissement haut en couleurs et en émotions fortes, pour les plus grands comme les plus petits.');
+
+                    var urlAttractions = regenerateUrl('attractions', 2);
+                    $('#parcAttractions').attr('href', urlAttractions);
+
+                    var urlRestaurants = regenerateUrl('restaurants', 2);
+                    $('#parcRestaurants').attr('href', urlRestaurants);
+
+
+                    var urlSpectacles = regenerateUrl('spectacles', 2);
+                    $('#parcSpectacles').attr('href', urlSpectacles);
+                });
+
+                // Fin du code js pour les parcs
+
+                // Début du code js pour les hôtels
+
+                $('#disneylandHotel').on('click', function (e) {
+                    e.preventDefault();
+
+                    imgLoad = 3;
+
+                    $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n011033_2018juil04_disneyland-hotel-ouside_900-360.jpg")');
+
+                    $('#titleHotel').html('Disneyland Hotel');
+                    $('#descriptionHotel').html('Le luxe vous va si bien. Exaucez vos rêves princiers ! Aux portes du Parc Disneyland, ce majestueux hôtel d\'inspiration victorienne vous offre la qualité irréprochable d\'un service 5 étoiles et l\'hospitalité incomparable de Disney. Et vous pourrez même profiter de moments de magie supplémentaires dans nos Parcs Disney® à thème tous les jours de votre séjour !');
+
+                    var urlDisneyHotel = regenerateUrl('hotels', 1);
+
+                    $('#readMoreHotel').attr('href', urlDisneyHotel);
+                });
+
+                $('#disneyHotelNY').on('click', function (e) {
+                    e.preventDefault();
+
+                    imgLoad = 4;
+
+                    $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n015599_2020oct01_new-york-hotel-outside_900x360.jpg")');
+
+                    $('#titleHotel').html('Disney\'s Hotel New York');
+                    $('#descriptionHotel').html('Détendez-vous au sommet d\'un gratte-ciel, dans une de nos chambres spacieuses et dans notre plus grande piscine de cet hôtel 4 étoiles de style new-yorkais. Il se situe à courte distance des parcs et à quelques minutes de Disney Village® avec la navette gratuite et vous pourrez même profiter de moments de magie supplémentaires dans nos Parcs Disney® à thème tous les jours de votre séjour !');
+
+                    var urlDisneyHotelNY = regenerateUrl('hotels', 2);
+
+                    $('#readMoreHotel').attr('href', urlDisneyHotelNY);
+                });
+
+                $('#disneyNewportBayClub').on('click', function (e) {
+                    e.preventDefault();
+
+                    imgLoad = 5;
+
+                    $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n010308_2017oct01_newport-bay-club-outside_900X360.jpg")');
+
+                    $('#titleHotel').html('Disney\'s Newport Bay Club');
+                    $('#descriptionHotel').html('Entièrement rénové, cet hôtel 4 étoiles au style maritime vous immerge dans le cadre et l\'atmosphère d\'une station balnéaire luxueuse.\n' +
+                        'Vous apprécierez le charme de cette demeure côtière des années 1900 nichée sur les bords du lac Disney. Profitant d\'une romance toute maritime, cet hôtel se trouve à seulement 15 minutes à pied des parcs et encore moins avec la navette gratuite et vous pourrez même profiter de moments de magie supplémentaires dans nos Parcs Disney® à thème tous les jours de votre séjour !');
+
+                    var urlDisneyNewportBayClub = regenerateUrl('hotels', 3);
+                    $('#readMoreHotel').attr('href', urlDisneyNewportBayClub);
+                });
+
+                $('#disneyHotelCheyenne').on('click', function (e) {
+                    e.preventDefault();
+
+                    imgLoad = 6;
+
+                    $('.bodyFixe').css('background-image', 'url("https://secure.cdn3.wdpromedia.com/media/pep/live/media/site/img/style/ui-global-components/global-nav-bar/28614595d88fc5d4f47886cfbe106885-disneyland-paris-logo.png")');
+
+                    $('#titleHotel').html('Disney\'s Hotel Cheyenne');
+                    $('#descriptionHotel').html('Chaussez vos santiags, accrochez-vous à vos chapeaux et tous à cheval ! Le Disney\'s Hotel Cheyenne® vous attend pour un bivouac digne d’un véritable cow-boy !\n' +
+                        'Découvrez nos nouvelles chambres Texas décorées sur le thème du film Toy Story et son Shérif Woody.');
+
+                    var urlDisneyHotelCheyenne = regenerateUrl('hotels', 4);
+                    $('#readMoreHotel').attr('href', urlDisneyHotelCheyenne);
+                });
+
+                // Fin du code js pour les hôtels
+
+                // Début code js pour les offres
+
+                $('#billet1Jour').on('click', function (e) {
+                    e.preventDefault();
+
+                    imgLoad = 7;
+
+                    $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n017294_2018dec31_guest-twilight-zone-tower-of-terror_16-9.jpg")');
+
+                    $('#titleOffre').html('Billet un jour acheté à l\'avance');
+                    $('#descriptionOffre').html('Selon votre période de visite, économisez avec notre gamme de billets MINI, MAGIC et SUPER MAGIC pour profiter pleinement de la Magie Disney à 35 min de Paris(1) ! \n' +
+                        'Et pour plus de flexibilité, optez pour le billet SUPER MAGIC PLUS, valable tout au long de l’année, à la date de votre choix. \n' +
+                        '\n' +
+                        'Entrez directement dans les Parcs, sans attendre aux guichets d’entrée !');
+
+                    var urlBillet1Jour = regenerateUrl('offres', 1);
+                    $('#readMoreOffre').attr('href', urlBillet1Jour);
+                });
+
+                $('#billet2Jour').on('click', function (e) {
+                    e.preventDefault();
+
+                    imgLoad = 7;
+
+                    $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n017294_2018dec31_guest-twilight-zone-tower-of-terror_16-9.jpg")');
+
+                    $('#titleOffre').html('Billet 2 jours et plus');
+                    $('#descriptionOffre').html('Plus vous restez, moins vous payez par jour! Choisissez parmi nos offres spéciales billets ou notre gamme de billets standards 2 jours et plus !\n');
+
+                    var urlBillet2Jour = regenerateUrl('offres', 2);
+                    $('#readMoreOffre').attr('href', urlBillet2Jour);
+                });
             });
-        })
+        });
+            // Fin code js pour les offres
     </script>
 <div class="bodyFixe">
     <div class="carousel">
@@ -50,7 +212,7 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg" alt="Disney 30 ans" style="width:100%;">
+                    <img src="http://opm-dnx.disneylandparis.com/content/FR/FR/Locale/system/images/hd13351_2021dec01_25th-birthday-mickey_16-9_billboard_v2-OK.jpg" alt="Disney 30 ans" style="width:100%;">
                     <div class="carousel-caption">
                         <h2 class="carousel_h2">Disney a 30 ans</h2>
                         <p class="carousel_p">Venez fêter ça avec nous!</p>
@@ -58,7 +220,7 @@
                 </div>
 
                 <div class="item">
-                    <img src="http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg" alt="Disney événement Halloween" style="width:100%;">
+                    <img src="http://opm-dnx.disneylandparis.com/content/FR/FR/Locale/system/images/hd12969_2018jun30_europe-only_halloween-witch_16-9.jpg" alt="Disney événement Halloween" style="width:100%;">
                     <div class="carousel-caption">
                         <h2 class="carousel_h2">C'est Halloween à Disney!</h2>
                         <p class="carousel_p">Venez tester notre nouvelle maison hantée!</p>
@@ -66,10 +228,10 @@
                 </div>
 
                 <div class="item">
-                    <img src="http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg" alt="Disney Parade du jour" style="width:100%;">
+                    <img src="http://cdn5.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-idf/system/images/n020624__2022may26_world_beauty-shots-frozen-sing-along_16x9.jpg" alt="Disney Parade du jour" style="width:100%;">
                     <div class="carousel-caption">
-                        <h2 class="carousel_h2">Parade du jour</h2>
-                        <p class="carousel_p">Tigrou danse avec Miney!</p>
+                        <h2 class="carousel_h2">La reine des neiges, le spectacle!</h2>
+                        <p class="carousel_p">Venez fêter Noël avec Rayponce!</p>
                     </div>
                 </div>
 
@@ -95,85 +257,135 @@
                         <img src="{{ asset('img/ic_keyboard_arrow_down_white_24px.svg') }}">
                     </span>
 
-                    <div class="dropdown-content" style="width: 100%;"">
-                        <a href="#">Parc Disneyland </a>
-                        <a href="#">Parc Walt Disney Studios</a>
+                    <div class="dropdown-content">
+                        <a href="" id="parcDisneyland">Parc Disneyland </a>
+                        <a href="" id="parcWDS">Parc Walt Disney Studios</a>
                     </div>
                 </div>
             </div>
             <div class="allDivContent">
                 <div class="title">
-                    <h2>Parc Disneyland</h2>
+                    <h2 id="titleParc">Parc Disneyland</h2>
                 </div>
-                <div class="description">
-                    Le parc Disneyland est trop bien ma gueule, ouai il est trop bien!
-                    Viens le visiter, stp stp stp stp
+                <div class="description" id="descriptionParc">
+                    Envolez-vous pour un voyage féerique à travers cinq Lands fantastiques, remplis d'attractions, spectacles et parades. Mesurez-vous aux terribles pirates, voyagez dans le temps et l'espace et laissez-vous émerveiller par les feux d'artifice et jeux de lumière inoubliables du Château de la Belle au Bois Dormant.
                 </div>
-                <div class="button">
+                <div class="button" id="readMoreParc">
                     <div class="dropdown">
-                    <span class="dropbtn">
-                        <button class="dropbtn">En savoir plus sur </button>
-                        <img src="{{ asset('img/ic_keyboard_arrow_down_white_24px.svg') }}">
-                    </span>
-
-                        <div class="dropdown-content" style="width: 100%;"">
-                        <a href="{{ path('attraction') }}">Les attractions</a>
-                        <a href="{{ path('restaurant') }}">Les restaurants</a>
-                        <a href="{{ path('shows') }}">Les spéctacles</a>
+                        <button class="dropbtn">En savoir plus sur:</button>
+                        <div class="dropdown-content">
+                            <a href="{{ path('attractions', {'id': 1}) }}" id="parcAttractions">Attractions</a>
+                            <a href="{{ path('restaurants', { 'id': 1 }) }}" id="parcRestaurants">Restaurants</a>
+                            <a href="{{ path('spectacles', { 'id': 1 }) }}" id="parcSpectacles">Spectacles</a>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
+        <div class="col-lg-12 contenu" id="hotel">
+            <div class="mainContent">
+                <div class="dropdown">
+                    <button class="dropbtn">Les hôtels de Disneyland</button>
+                    <div class="dropdown-content">
+                        <a href="" id="disneylandHotel">Disneyland Hotel</a>
+                        <a href="" id="disneyHotelNY">Disney's Hotel New York</a>
+                        <a href="" id="disneyNewportBayClub">Disney's Newport Bay Club</a>
+                        <a href="" id="disneyHotelCheyenne">Disney's Hotel Cheyenne</a>
+                    </div>
+                </div>
+            </div>
+            <div class="allDivContent">
+                <div class="title">
+                    <h2 id="titleHotel">Disneyland Hotel</h2>
+                </div>
+                <div class="description" id="descriptionHotel">
+                    Le luxe vous va si bien. Exaucez vos rêves princiers ! Aux portes du Parc Disneyland, ce majestueux hôtel d'inspiration victorienne vous offre la qualité irréprochable d'un service 5 étoiles et l'hospitalité incomparable de Disney. Et vous pourrez même profiter de moments de magie supplémentaires dans nos Parcs Disney® à thème tous les jours de votre séjour !
+                </div>
+                <div class="button">
+                    <p class="readMore"><a href="{{ path('hotels', { id: 1 }) }}" id="readMoreHotel">En savoir plus</a></p>
+                </div>
+            </div>
+        </div>
+
         <div class="col-lg-12 contenu" id="offre">
             <div class="mainContent">
                 <div class="dropdown">
-                    <button class="dropbtn">Dropdown</button>
+                    <span class="dropbtn">
+                        <button class="dropbtn">Les offres de Disneyland</button>
+                    </span>
+
                     <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                        <a href="" id="billet1Jour">Billet 1 jour acheté à l'avance</a>
+                        <a href="" id="billet2Jour">Billet 2 jours et plus</a>
                     </div>
                 </div>
             </div>
             <div class="allDivContent">
                 <div class="title">
-                    <h2>Parc Disneyland</h2>
+                    <h2 id="titleOffre">Billet 1 jour acheté à l'avance</h2>
                 </div>
-                <div class="description">
-                    Le parc Disneyland est trop bien ma gueule, ouai il est trop bien!
-                    Viens le visiter, stp stp stp stp
+                <div class="description" id="descriptionOffre">
+                    Selon votre période de visite, économisez avec notre gamme de billets MINI, MAGIC et SUPER MAGIC pour profiter pleinement de la Magie Disney à 35 min de Paris(1) !
+                    Et pour plus de flexibilité, optez pour le billet SUPER MAGIC PLUS, valable tout au long de l’année, à la date de votre choix.
+
+                    Entrez directement dans les Parcs, sans attendre aux guichets d’entrée !
                 </div>
                 <div class="button">
-                    <p class="readMore">En savoir plus</p>
-                    <img src="{{ asset('img/arrow_circle_white.png') }}">
+                    <p><a href="{{ path('offres', { id: 1 }) }}" id="readMoreOffre">En savoir plus</a></p>
                 </div>
             </div>
         </div>
+
         <div class="col-lg-12 contenu" id="transport">
-            <div class="mainContent">
-                <div class="dropdown">
-                    <button class="dropbtn">Dropdown</button>
-                    <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+            <div id="allDivContentTransport">
+                <div id="divTitleTransport">
+                    <h2 id="titleTransport">Comment se rendre à Disneyland® Paris</h2>
+                </div>
+                <div id="descriptionTransport">
+                    Pour vous rendre à Disneyland® Paris, c'est simple : plusieurs moyens de transport sont à votre disposition pour vous emmener en un éclair au cœur de la magie.
+                    Préparez vos petites princesses et vos petits princes, votre carrosse est avancé...
+                </div>
+            </div>
+            <div id="divAllTransports">
+                <div id="divVoiture" class="ecartDivTransports">
+                    <div id="imgVoiture">
+                        <img src="http://cdn5.dlp-media.com/resize/mwImage/1/170/96/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-idf/system/images/DLP_Car-Travel-to-DLP_16-9.jpg" title="Icône d'une voiture" alt="Icône d'une voiture" class="imgTransports">
+                    </div>
+                    <div id="divContentVoiture">
+                        <div id="titleVoiture">
+                            Disneyland® Paris en voiture
+                        </div>
+                        <div id="descriptionVoiture">
+                            Idéalement situé à courte distance des principales autoroutes, vous ne serez jamais loin de la magie des Parcs et des espaces culturels environnants.
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="allDivContent">
-                <div class="title">
-                    <h2>Parc Disneyland</h2>
+                <div id="divExpress" class="ecartDivTransports">
+                    <div id="imgExpress" class="imgTransports">
+                        <img src="http://cdn2.dlp-media.com/resize/mwImage/1/170/96/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-idf/system/images/1panoBus-DLPEXPbackblanc_16-9.jpg" title="Icône Express" alt="Icône Express" class="imgTransports">
+                    </div>
+                    <div id="divContentExpress">
+                        <div id="titleExpress">
+                            Disneyland® Paris Express
+                        </div>
+                        <div id="descriptionExpress">
+                            De la Ville des Lumières jusqu'au monde des rêves, préparez-vous à vivre une expérience unique combinant votre transport depuis Paris et l'entrée aux parcs Disney
+                        </div>
+                    </div>
                 </div>
-                <div class="description">
-                    Le parc Disneyland est trop bien ma gueule, ouai il est trop bien!
-                    Viens le visiter, stp stp stp stp
+                <div id="divRER" class="ecartDivTransports">
+                    <div id="imgExpress" class="imgTransports">
+                        <img src="http://cdn3.dlp-media.com/resize/mwImage/1/170/96/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-idf/system/images/n007183_2015aug01_rer_16-9.jpg" title="Icône RER" alt="Icône RER" class="imgTransports">
+                    </div>
+                    <div id="divContentRER">
+                        <div id="titleRER">
+                            Option de transfert : Prenez le RER A depuis Paris
+                        </div>
+                        <div id="descriptionRER">
+                            Depuis Paris, vous êtes à 35 minutes du Parc Disneyland Paris.
+                        </div>
+                    </div>
                 </div>
-                <div class="button">
-                    <p class="readMore">En savoir plus</p>
-                    <img src="{{ asset('img/arrow_circle_white.png') }}">
-                </div>
-            </div>
         </div>
     </div>
 </div>
