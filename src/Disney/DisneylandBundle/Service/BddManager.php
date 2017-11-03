@@ -34,7 +34,7 @@ class BddManager
         return $results;
     }
 
-    public function getAttractionByParc($parc)
+    public function getAttractionsByParc($parc)
     {
         $em = $this->em->getRepository('DisneyDisneylandBundle:Attractions');
         $results = $em->findByParc($parc);
@@ -46,5 +46,17 @@ class BddManager
         }
 
         return $results;
+    }
+
+    public function getAttraction($id)
+    {
+        $em = $this->em->getRepository('DisneyDisneylandBundle:Attractions');
+        $result = $em->findById($id);
+
+        $result[0]->setParc($result[0]->getParcText());
+        $result[0]->setLand($result[0]->getLandText());
+        $result[0]->setAge($result[0]->getAgeText());
+
+        return $result;
     }
 }

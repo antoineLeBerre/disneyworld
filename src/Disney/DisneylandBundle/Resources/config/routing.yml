@@ -8,7 +8,7 @@ attractions:
 
 attraction:
     path: /attraction/{id}
-    defaults: { _controller: DisneyDisneylandBundle:Parc:attractions }
+    defaults: { _controller: DisneyDisneylandBundle:Parc:attraction }
 
 hotels:
     path:     /hotels
@@ -16,7 +16,11 @@ hotels:
 
 restaurants:
     path:     /
-    defaults: { _controller: DisneyDisneylandBundle:Home:index }
+    defaults: { _controller: DisneyDisneylandBundle:Parc:restaurants }
+
+restaurant:
+    path: /restaurant/{id}
+    defaults: { _controller: DisneyDisneylandBundle:Parc:restaurants }
 
 spectacles:
     path:     /spectacles

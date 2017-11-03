@@ -17,10 +17,36 @@ class ParcController extends Controller
     public function attractionsAction(Request $request){
         $manageAttraction = $this->get('disney_disneyland.bddmanager');
         $id = $request->get('id');
-        $attraction = $manageAttraction->getAttractionByParc($id);
+        $attractions = $manageAttraction->getAttractionsByParc($id);
+
 
         return $this->render('DisneyDisneylandBundle:Parc:index.html.twig', [
-            'contents'=> $attraction
+            'contents'=> $attractions
+        ]);
+    }
+
+    public function attractionAction(Request $request)
+    {
+        $manageAttraction = $this->get('disney_disneyland.bddmanager');
+        $id = $request->get('id');
+        $attraction = $manageAttraction->getAttraction($id);
+//        dump($attraction);
+//        die();
+
+        return $this->render('DisneyDisneylandBundle:Parc:attraction.html.twig', [
+            'content'=> $attraction[0]
+        ]);
+    }
+
+    public function restaurantsAction(Request $request) {
+        $restaurantManger = $this->get('disney_disneyland.bddmanager');
+        $id = $request->get('id');
+
+        $restaurant = $restaurantManger->getRestaurantByParc($id);
+
+        return $this->render('DisneyDisneylandBundle:Parc:index.html.twig', [
+            'contents'=> $restaurant,
+            'title' => 'Les restaurants du parc ',
         ]);
     }
 }

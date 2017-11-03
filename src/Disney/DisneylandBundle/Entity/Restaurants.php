@@ -260,5 +260,30 @@ class Restaurants
     {
         return $this->image;
     }
+
+    public function getParcText()
+    {
+        $parc[1] = 'Parc Disneyland®';
+        $parc[2] = 'Walt Disney Studios';
+
+        return $parc[$this->parc];
+    }
+
+    public function getLandText()
+    {
+        $land[2] = 'Fantasyland';
+        $land[5] = 'Toon Studio';
+        $land[8] = 'Main Street, U.S.A.';
+
+        return $land[$this->land];
+    }
+
+    public function getServiceText()
+    {
+        $service[1] = 'Service à table';
+        $service[2] = 'Service au comptoir';
+
+        return $service[$this->service];
+    }
 }
 

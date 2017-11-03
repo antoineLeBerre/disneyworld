@@ -63,6 +63,12 @@ class Attractions
     private $image;
 
     /**
+     * @ORM\OneToOne(targetEntity="Disney\DisneylandBundle\Entity\Waiting", cascade={"persist"})
+     */
+    private $waiting;
+
+
+    /**
      * Set id
      *
      * @param string $id
@@ -260,5 +266,28 @@ class Attractions
 
         return $age[$this->age];
     }
-}
 
+    /**
+     * Set waiting
+     *
+     * @param \Disney\DisneylandBundle\Entity\Waiting $waiting
+     *
+     * @return Attractions
+     */
+    public function setWaiting(\Disney\DisneylandBundle\Entity\Waiting $waiting = null)
+    {
+        $this->waiting = $waiting;
+
+        return $this;
+    }
+
+    /**
+     * Get waiting
+     *
+     * @return \Disney\DisneylandBundle\Entity\Waiting
+     */
+    public function getWaiting()
+    {
+        return $this->waiting;
+    }
+}
