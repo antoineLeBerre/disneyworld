@@ -4,6 +4,8 @@
     <script>
         $('document').ready(function () {
             var imgLoad = 1;
+            var imgParc = 1;
+            var imgHotel = 1;
             var win = jQuery(window).height();
             var parc = jQuery("#parc").offset().top;
             var hotel = jQuery("#hotel").offset().top;
@@ -13,31 +15,65 @@
 
             $('document').ready(function () {
                 function regenerateUrl(type, id) {
-                    var url = '/' + type + '?id=' + id;
+                    var url = '/' + type + '/' + id;
 
                     return url;
                 }
+
+                /*
+                * Si imgLoad n'est pas chargé !== 1
+                * Alors je checke que imgParc est bien le parc 1 === 1
+                * Si imgParc est bien le premier parc == 1, j'affiche la première image
+                * Sinon, j'affiche la deuxième image
+                */
 
                 $(window).scroll(function () {
                     var where = jQuery(window).scrollTop();
 
                     if (where >= parc - win + margin && where < hotel - win) {
-                        if (imgLoad !== 1) {
-                            $('.bodyFixe').stop().fadeOut(250, function () {
-                                $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg")').fadeIn(250);
-                            });
-                            imgLoad = 1;
-                        } else {
-                            console.log('image 1 deja chargé');
-                        }
+                            if (imgLoad !== 1) {
+                                if(imgParc === 1) {
+                                    $('.bodyFixe').stop().fadeOut(250, function () {
+                                        $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n013047_2019mai13_sleeping-beauty-castle_16-9.jpg")').fadeIn(250);
+                                    });
+
+                                    imgLoad = 1;
+                                } else {
+                                    $('.bodyFixe').stop().fadeOut(250, function () {
+                                        $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n009365_2017jun01_disney-studio1_16-9.jpg")').fadeIn(250);
+                                    });
+
+                                    imgLoad = 1;
+                                }
+                            }
                     } else if (where >= hotel - win + margin && where < offre - win) {
                         if (imgLoad !== 2) {
-                            $('.bodyFixe').stop().fadeOut(250, function () {
-                                $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n011033_2018juil04_disneyland-hotel-ouside_900-360.jpg")').fadeIn(250);
-                            });
-                            imgLoad = 2;
-                        } else {
-                            console.log('image 2 deja chargé');
+                            if(imgHotel === 1) {
+                                $('.bodyFixe').stop().fadeOut(250, function () {
+                                    $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n011033_2018juil04_disneyland-hotel-ouside_900-360.jpg")').fadeIn(250);
+                                });
+                                imgLoad = 2;
+                            } else {
+                                $('.bodyFixe').stop().fadeOut(250, function () {
+                                    $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n015599_2020oct01_new-york-hotel-outside_900x360.jpg")').fadeIn(250);
+                                });
+                                imgLoad = 2;
+                            }
+                        } else if(imgLoad !== 2) {
+                            if(imgHotel === 2) {
+                                $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n010308_2017oct01_newport-bay-club-outside_900X360.jpg")').fadeIn(250);
+                                imgLoad = 2;
+                            } else {
+                                $('.bodyFixe').stop().fadeOut(250, function () {
+                                    $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n015599_2020oct01_new-york-hotel-outside_900x360.jpg")').fadeIn(250);
+                                });
+                                imgLoad = 2;
+                            }
+                        }  else if(imgLoad !== 2) {
+                            if(imgHotel === 3) {
+                                $('.bodyFixe').css('background-image', 'url("https://secure.cdn3.wdpromedia.com/media/pep/live/media/site/img/style/ui-global-components/global-nav-bar/28614595d88fc5d4f47886cfbe106885-disneyland-paris-logo.png")').fadeIn(250);
+                                imgLoad = 2;
+                            }
                         }
                     }  else if (where >= offre - win + margin && where < transport - win) {
                         if (imgLoad !== 3) {
@@ -86,7 +122,7 @@
                 $('#parcWDS').on('click', function (e) {
                     e.preventDefault();
 
-                    imgLoad = 2;
+                    imgLoad = 1;
 
                     $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/630/354/75/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n009365_2017jun01_disney-studio1_16-9.jpg")');
 
@@ -111,7 +147,7 @@
                 $('#disneylandHotel').on('click', function (e) {
                     e.preventDefault();
 
-                    imgLoad = 3;
+                    imgLoad = 2;
 
                     $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n011033_2018juil04_disneyland-hotel-ouside_900-360.jpg")');
 
@@ -126,7 +162,7 @@
                 $('#disneyHotelNY').on('click', function (e) {
                     e.preventDefault();
 
-                    imgLoad = 4;
+                    imgLoad = 2;
 
                     $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n015599_2020oct01_new-york-hotel-outside_900x360.jpg")');
 
@@ -141,7 +177,7 @@
                 $('#disneyNewportBayClub').on('click', function (e) {
                     e.preventDefault();
 
-                    imgLoad = 5;
+                    imgLoad = 2;
 
                     $('.bodyFixe').css('background-image', 'url("http://cdn1.dlp-media.com/resize/mwImage/1/900/360/90/wdpromedia.disney.go.com/media/wdpro-dlp-assets/prod/fr-fr/system/images/n010308_2017oct01_newport-bay-club-outside_900X360.jpg")');
 
@@ -156,7 +192,7 @@
                 $('#disneyHotelCheyenne').on('click', function (e) {
                     e.preventDefault();
 
-                    imgLoad = 6;
+                    imgLoad = 2;
 
                     $('.bodyFixe').css('background-image', 'url("https://secure.cdn3.wdpromedia.com/media/pep/live/media/site/img/style/ui-global-components/global-nav-bar/28614595d88fc5d4f47886cfbe106885-disneyland-paris-logo.png")');
 

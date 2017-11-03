@@ -5,3 +5,6 @@ services:
     disney_disneyland.jsontobdd:
         class: Disney\DisneylandBundle\Service\JsonToBDD
         arguments: ["@doctrine.orm.entity_manager"]
+    disney_disneyland.bddmanager:
+        class: Disney\DisneylandBundle\Service\BddManager
+        arguments: ["@doctrine.orm.entity_manager"]

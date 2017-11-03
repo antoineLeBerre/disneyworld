@@ -5,12 +5,12 @@ namespace Disney\DisneylandBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Attractions
+ * Shows
  *
- * @ORM\Table(name="attractions")
- * @ORM\Entity(repositoryClass="Disney\DisneylandBundle\Repository\AttractionsRepository")
+ * @ORM\Table(name="shows")
+ * @ORM\Entity(repositoryClass="Disney\DisneylandBundle\Repository\ShowsRepository")
  */
-class Attractions
+class Shows
 {
     /**
      * @var int
@@ -23,16 +23,16 @@ class Attractions
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=100)
      */
     private $name;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="park", type="integer")
+     * @ORM\Column(name="parc", type="integer")
      */
-    private $park;
+    private $parc;
 
     /**
      * @var int
@@ -42,23 +42,9 @@ class Attractions
     private $land;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="age", type="integer")
-     */
-    private $age;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="min_size", type="integer", nullable=true)
-     */
-    private $minSize;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=255)
+     * @ORM\Column(name="image", type="string", length=100)
      */
     private $image;
 
@@ -67,7 +53,7 @@ class Attractions
      *
      * @param string $id
      *
-     * @return Attractions
+     * @return Sh
      */
     public function setId($id)
     {
@@ -91,7 +77,7 @@ class Attractions
      *
      * @param string $name
      *
-     * @return Attractions
+     * @return Shows
      */
     public function setName($name)
     {
@@ -113,13 +99,13 @@ class Attractions
     /**
      * Set parc
      *
-     * @param integer $park
+     * @param integer $parc
      *
-     * @return Attractions
+     * @return Shows
      */
-    public function setPark($park)
+    public function setParc($parc)
     {
-        $this->park = $park;
+        $this->parc = $parc;
 
         return $this;
     }
@@ -129,9 +115,9 @@ class Attractions
      *
      * @return int
      */
-    public function getPark()
+    public function getParc()
     {
-        return $this->park;
+        return $this->parc;
     }
 
     /**
@@ -139,7 +125,7 @@ class Attractions
      *
      * @param integer $land
      *
-     * @return Attractions
+     * @return Shows
      */
     public function setLand($land)
     {
@@ -159,59 +145,11 @@ class Attractions
     }
 
     /**
-     * Set age
-     *
-     * @param integer $age
-     *
-     * @return Attractions
-     */
-    public function setAge($age)
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
-    /**
-     * Get age
-     *
-     * @return int
-     */
-    public function getAge()
-    {
-        return $this->age;
-    }
-
-    /**
-     * Set minSize
-     *
-     * @param integer $minSize
-     *
-     * @return Attractions
-     */
-    public function setMinSize($minSize)
-    {
-        $this->minSize = $minSize;
-
-        return $this;
-    }
-
-    /**
-     * Get minSize
-     *
-     * @return int
-     */
-    public function getMinSize()
-    {
-        return $this->minSize;
-    }
-
-    /**
      * Set image
      *
      * @param string $image
      *
-     * @return Attractions
+     * @return Shows
      */
     public function setImage($image)
     {

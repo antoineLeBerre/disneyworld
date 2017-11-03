@@ -5,12 +5,12 @@ namespace Disney\DisneylandBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Attractions
+ * Restaurants
  *
- * @ORM\Table(name="attractions")
- * @ORM\Entity(repositoryClass="Disney\DisneylandBundle\Repository\AttractionsRepository")
+ * @ORM\Table(name="restaurants")
+ * @ORM\Entity(repositoryClass="Disney\DisneylandBundle\Repository\RestaurantsRepository")
  */
-class Attractions
+class Restaurants
 {
     /**
      * @var int
@@ -23,16 +23,16 @@ class Attractions
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=50)
      */
     private $name;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="park", type="integer")
+     * @ORM\Column(name="parc", type="integer")
      */
-    private $park;
+    private $parc;
 
     /**
      * @var int
@@ -44,21 +44,28 @@ class Attractions
     /**
      * @var int
      *
-     * @ORM\Column(name="age", type="integer")
+     * @ORM\Column(name="service", type="integer")
      */
-    private $age;
+    private $service;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="min_size", type="integer", nullable=true)
+     * @ORM\Column(name="price", type="integer")
      */
-    private $minSize;
+    private $price;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=50)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=100)
      */
     private $image;
 
@@ -67,7 +74,7 @@ class Attractions
      *
      * @param string $id
      *
-     * @return Attractions
+     * @return Restaurants
      */
     public function setId($id)
     {
@@ -91,7 +98,7 @@ class Attractions
      *
      * @param string $name
      *
-     * @return Attractions
+     * @return Restaurants
      */
     public function setName($name)
     {
@@ -113,13 +120,13 @@ class Attractions
     /**
      * Set parc
      *
-     * @param integer $park
+     * @param integer $parc
      *
-     * @return Attractions
+     * @return Restaurants
      */
-    public function setPark($park)
+    public function setParc($parc)
     {
-        $this->park = $park;
+        $this->parc = $parc;
 
         return $this;
     }
@@ -129,9 +136,9 @@ class Attractions
      *
      * @return int
      */
-    public function getPark()
+    public function getParc()
     {
-        return $this->park;
+        return $this->parc;
     }
 
     /**
@@ -139,7 +146,7 @@ class Attractions
      *
      * @param integer $land
      *
-     * @return Attractions
+     * @return Restaurants
      */
     public function setLand($land)
     {
@@ -159,51 +166,75 @@ class Attractions
     }
 
     /**
-     * Set age
+     * Set service
      *
-     * @param integer $age
+     * @param integer $service
      *
-     * @return Attractions
+     * @return Restaurants
      */
-    public function setAge($age)
+    public function setService($service)
     {
-        $this->age = $age;
+        $this->service = $service;
 
         return $this;
     }
 
     /**
-     * Get age
+     * Get service
      *
      * @return int
      */
-    public function getAge()
+    public function getService()
     {
-        return $this->age;
+        return $this->service;
     }
 
     /**
-     * Set minSize
+     * Set price
      *
-     * @param integer $minSize
+     * @param integer $price
      *
-     * @return Attractions
+     * @return Restaurants
      */
-    public function setMinSize($minSize)
+    public function setPrice($price)
     {
-        $this->minSize = $minSize;
+        $this->price = $price;
 
         return $this;
     }
 
     /**
-     * Get minSize
+     * Get price
      *
      * @return int
      */
-    public function getMinSize()
+    public function getPrice()
     {
-        return $this->minSize;
+        return $this->price;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Restaurants
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -211,7 +242,7 @@ class Attractions
      *
      * @param string $image
      *
-     * @return Attractions
+     * @return Restaurants
      */
     public function setImage($image)
     {
