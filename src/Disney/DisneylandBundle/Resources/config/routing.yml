@@ -3,8 +3,12 @@ home:
     defaults: { _controller: DisneyDisneylandBundle:Home:index }
 
 attractions:
-    path:     /attractions
-    defaults: { _controller: DisneyDisneylandBundle:Home:index }
+    path:     /attractions/{id}
+    defaults: { _controller: DisneyDisneylandBundle:Parc:attractions }
+
+attraction:
+    path: /attraction/{id}
+    defaults: { _controller: DisneyDisneylandBundle:Parc:attractions }
 
 hotels:
     path:     /hotels

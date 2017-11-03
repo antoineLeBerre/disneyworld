@@ -30,9 +30,9 @@ class Attractions
     /**
      * @var int
      *
-     * @ORM\Column(name="park", type="integer")
+     * @ORM\Column(name="parc", type="integer")
      */
-    private $park;
+    private $parc;
 
     /**
      * @var int
@@ -113,13 +113,13 @@ class Attractions
     /**
      * Set parc
      *
-     * @param integer $park
+     * @param integer $parc
      *
      * @return Attractions
      */
-    public function setPark($park)
+    public function setparc($parc)
     {
-        $this->park = $park;
+        $this->parc = $parc;
 
         return $this;
     }
@@ -129,9 +129,9 @@ class Attractions
      *
      * @return int
      */
-    public function getPark()
+    public function getparc()
     {
-        return $this->park;
+        return $this->parc;
     }
 
     /**
@@ -228,6 +228,37 @@ class Attractions
     public function getImage()
     {
         return $this->image;
+    }
+
+    public function getparcText()
+    {
+        $parc[1] = 'Parc Disneyland®';
+        $parc[2] = 'Walt Disney Studios';
+
+        return $parc[$this->parc];
+    }
+
+    public function getLandText()
+    {
+        $land[1] = 'Adventureland';
+        $land[2] = 'Fantasyland';
+        $land[3] = 'Discoveryland';
+        $land[4] = 'Frontierland';
+        $land[5] = 'Toon Studio';
+        $land[6] = 'Backlot';
+        $land[7] = 'Production';
+
+        return $land[$this->land];
+    }
+
+    public function getAgeText()
+    {
+        $age[1] = 'Enfants';
+        $age[2] = 'Adolescents';
+        $age[3] = 'Adultes';
+        $age[4] = 'Tout âge';
+
+        return $age[$this->age];
     }
 }
 

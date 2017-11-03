@@ -23,8 +23,28 @@ class BddManager
     public function getAttractions()
     {
         $em = $this->em->getRepository('DisneyDisneylandBundle:Attractions');
-        $result = $em->findAll();
+        $results = $em->findAll();
 
-        return $result;
+        foreach ($results as $key=>$result) {
+            $results[$key]->setParc($result->getParcText());
+            $results[$key]->setLand($result->getLandText());
+            $results[$key]->setAge($result->getAgeText());
+        }
+
+        return $results;
+    }
+
+    public function getAttractionByParc($parc)
+    {
+        $em = $this->em->getRepository('DisneyDisneylandBundle:Attractions');
+        $results = $em->findByParc($parc);
+
+        foreach ($results as $key=>$result) {
+            $results[$key]->setParc($result->getParcText());
+            $results[$key]->setLand($result->getLandText());
+            $results[$key]->setAge($result->getAgeText());
+        }
+
+        return $results;
     }
 }
